@@ -1,2 +1,5 @@
+include ':repository'
+include ':usecases'
+include ':entity'
 include ':app'
 rootProject.name = "DemoVideos"
