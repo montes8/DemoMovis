@@ -1,6 +1,5 @@
 package pe.meria.repository.repository.entity.response
 
-import android.util.Log
 import com.google.gson.annotations.SerializedName
 import pe.meria.entity.Movie
 import pe.meria.repository.repository.utils.EMPTY

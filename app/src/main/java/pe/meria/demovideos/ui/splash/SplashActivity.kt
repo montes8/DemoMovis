@@ -32,7 +32,7 @@ class SplashActivity : BaseActivity() {
 
     override fun setUpView() {
         bindLayout()
-        appViewModel.getLogin()
+        appViewModel.validateLogin()
     }
 
     private fun bindLayout() {
@@ -40,12 +40,9 @@ class SplashActivity : BaseActivity() {
         activitySplashBinding.let {
             it.lifecycleOwner = this
         }
-
     }
 
-    override fun getViewModel(): BaseViewModel? {
-        return null
-    }
+    override fun getViewModel() = appViewModel
 
     override fun observeViewModel() {
        appViewModel.successLoginLiveData.observe(this, Observer {
@@ -60,12 +57,10 @@ class SplashActivity : BaseActivity() {
             if (value) {
                 HomeActivity.newInstance(this)
             } else {
-                HomeActivity.newInstance(this)
+                SigningActivity.newInstance(this)
 
             }
             finish()
         }, 3000)
     }
-
-
 }

@@ -3,6 +3,7 @@ package pe.meria.demovideos.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.view.ContextThemeWrapper
 import pe.meria.demovideos.R
@@ -27,6 +28,10 @@ object AppUtils {
                 dialogInterface.dismiss()
             }
             .show()
+    }
+
+    fun showErrorToast(message: String, context: Context) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
 }

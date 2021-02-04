@@ -27,8 +27,8 @@ class AppUseCase(
 
     fun validateLogin() = appRepositoryPreference.getLogin()
 
-    fun saveLogin() = appRepositoryPreference.saveLogin(true)
-
     fun logout() = appRepositoryPreference.saveLogin(false)
+
+
 
 }

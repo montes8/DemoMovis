@@ -1,9 +1,12 @@
 package pe.meria.demovideos.extensions
 
+import android.app.Activity
+import android.app.Dialog
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.view.Window
 import pe.meria.demovideos.utils.cantDelayButtonClick
 import pe.meria.demovideos.utils.problemLog
 
@@ -21,6 +24,15 @@ fun View.invisible() {
 
 fun View.validateVisibility(value: Boolean) {
     if (value)this.visible() else this.gone()
+}
+
+fun Activity?.showDialogCustom(resourceId: Int, func: Dialog.() -> Unit) {
+    val dialog = Dialog(this ?: return)
+    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+    dialog.setCancelable(false)
+    dialog.setContentView(resourceId)
+    dialog.func()
+    dialog.show()
 }
 
 

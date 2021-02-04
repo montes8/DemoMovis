@@ -17,4 +17,8 @@ class HomeViewModel(private val appUseCase: AppUseCase) : BaseViewModel() {
         }
     }
 
+    fun logout(){
+        appUseCase.logout()
+    }
+
 }

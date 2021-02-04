@@ -2,46 +2,30 @@ package pe.meria.repository.repository.di
 
 
 import android.content.Context
-import okhttp3.*
+import okhttp3.Cache
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import pe.meria.repository.BuildConfig
-import pe.meria.repository.repository.api.AppNetwork
 import pe.meria.repository.repository.ServiceApi
-import pe.meria.repository.repository.exception.NetworkException
+import pe.meria.repository.repository.api.AppNetwork
 import pe.meria.repository.repository.utils.*
 import pe.meria.usecases.repository.AppRepositoryNetwork
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.SocketTimeoutException
-import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
 
 val networkModule = module {
     single { providerHttpLoggingInterceptor() }
     single { providerCache(get()) }
     single { ApiInterceptor(get()) }
-    single {
-        providerOkHttpClient(
-            get(),
-            get(),
-            get()
-        )
-    }
-    single {
-        providerRetrofit(
-            getProperty(
-                NAME_BASE_URL
-            ), get()
-        )
-    }
+    single { providerOkHttpClient(get(), get()) }
+    single { providerRetrofit(getProperty(NAME_BASE_URL), get()) }
     single { providerApi(get()) }
 
-    single<AppRepositoryNetwork> {
-        AppNetwork(
-            get()
-        )
-    }
+    single<AppRepositoryNetwork> { AppNetwork(get()) }
 
 }
 
@@ -59,7 +43,7 @@ fun providerRetrofit(baseUrl: String, client: OkHttpClient): Retrofit {
 
 fun providerOkHttpClient(
     httpLoggingInterceptor: HttpLoggingInterceptor,
-    apiInterceptor: ApiInterceptor, context: Context
+    apiInterceptor: ApiInterceptor
 ): OkHttpClient {
     return OkHttpClient.Builder()
         .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -88,12 +72,12 @@ class ApiInterceptor(
     override fun intercept(chain: Interceptor.Chain): Response {
 
         var request = chain.request()
-      /*  request = request.newBuilder().header("Content-Type", CONTENT_TYPE)
+       request = request.newBuilder().header("Content-Type", CONTENT_TYPE)
             .header("os", PLATFORM)
             .header("x-density", getDensity(context).toString())
             .header("x-width", getWidth(context).toString())
             .header("x-height", getHeight(context).toString())
-            .build()*/
+            .build()
             return chain.proceed(request)
 
     }

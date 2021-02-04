@@ -5,7 +5,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/gray_300"
     tools:context=".ui.home.HomeActivity">
     <include
         android:id="@+id/include"

@@ -16,7 +16,7 @@ class AppNetwork(private val apiConfig: ServiceApi) : AppRepositoryNetwork {
             apiConfig.getListMovie("1","7a876180bb2af25b9469dafdee4ee007")
         val response = callResponse.execute()
        if (!response.isSuccessful) {
-            throw response.errorBody().toCompleteErrorModel()?.error?.getException() ?: Exception()
+            throw response.errorBody().toCompleteErrorModel()?.getException() ?: Exception()
         }
         return BaseResponse.toListMovie(response.validateBody())
     }

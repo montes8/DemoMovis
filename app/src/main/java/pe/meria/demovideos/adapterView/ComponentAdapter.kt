@@ -32,8 +32,8 @@ object ComponentAdapter {
 
 
     @JvmStatic
-    @BindingAdapter("setTextInt")
-    fun setTextInt(view: TextView,value : Double) {
+    @BindingAdapter("setTextDouble")
+    fun setTextDouble(view: TextView,value : Double) {
        view.text = value.toString()
     }
 
@@ -43,7 +43,6 @@ object ComponentAdapter {
         val locale = Locale(value)
         Locale.setDefault(locale)
         view.text = Locale.getDefault().language
-       Log.d("language","${Locale.getDefault().language}")
     }
 
 }

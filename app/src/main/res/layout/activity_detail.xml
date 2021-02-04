@@ -1,9 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.detail.DetailActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable
+            name="movieDetail"
+            type="pe.meria.entity.Movie" />
+        <variable
+            name="detailViewModel"
+            type="pe.meria.demovideos.ui.detail.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.detail.DetailFoodActivity">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/general"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/size_twenty">
+
+                <ImageView
+                    android:id="@+id/imgBannerFood"
+                    loadImage="@{movieDetail.backdropPath}"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_two_hundred_thirty_four"
+                    android:background="@color/gray_300"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtTitleDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_fifteen"
+                    android:layout_marginTop="@dimen/size_twenty"
+                    android:layout_marginEnd="@dimen/size_fifteen"
+                    android:gravity="start"
+                    android:text="@{movieDetail.title}"
+                    android:textColor="@color/purple_500"
+                    android:textSize="@dimen/text_size_nineteen"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgBannerFood" />
+
+
+                <TextView
+                    android:id="@+id/txtNoteTitleDetail"
+                    android:layout_width="@dimen/general"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_fifteen"
+                    android:layout_marginTop="@dimen/size_ten"
+                    android:layout_marginEnd="@dimen/size_fifteen"
+                    android:text="@string/txt_title_note"
+                    android:textColor="@color/purple_500"
+                    android:textSize="@dimen/text_size_fifteen"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitleDetail" />
+
+                <TextView
+                    android:id="@+id/txtNoteDetail"
+                    setTextDouble="@{movieDetail.voteAverage}"
+                    android:layout_width="@dimen/general"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_fifteen"
+                    android:layout_marginTop="@dimen/size_eight"
+                    android:layout_marginEnd="@dimen/size_fifteen"
+                    android:textColor="@color/gray_400"
+                    android:textSize="@dimen/text_size_twelve"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtNoteTitleDetail" />
+
+                <TextView
+                    android:id="@+id/txtDateTitleDetail"
+                    android:layout_width="@dimen/general"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_fifteen"
+                    android:layout_marginTop="@dimen/size_ten"
+                    android:layout_marginEnd="@dimen/size_fifteen"
+                    android:text="@string/txt_title_date"
+                    android:textColor="@color/purple_500"
+                    android:textSize="@dimen/text_size_fifteen"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtNoteDetail" />
+
+                <TextView
+                    android:id="@+id/txtDateDetail"
+                    android:layout_width="@dimen/general"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_fifteen"
+                    android:layout_marginTop="@dimen/size_eight"
+                    android:layout_marginEnd="@dimen/size_fifteen"
+                    android:text="@{movieDetail.releaseDate}"
+                    android:textColor="@color/gray_400"
+                    android:textSize="@dimen/text_size_twelve"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDateTitleDetail" />
+
+                <TextView
+                    android:id="@+id/txtDescriptionTitleDetail"
+                    android:layout_width="@dimen/general"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_fifteen"
+                    android:layout_marginTop="@dimen/size_ten"
+                    android:layout_marginEnd="@dimen/size_fifteen"
+                    android:text="@string/txt_title_description"
+                    android:textColor="@color/purple_500"
+                    android:textSize="@dimen/text_size_fifteen"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDateDetail" />
+
+                <TextView
+                    android:id="@+id/txtDescriptionDetail"
+                    android:layout_width="@dimen/general"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_fifteen"
+                    android:layout_marginTop="@dimen/size_eight"
+                    android:layout_marginEnd="@dimen/size_fifteen"
+                    android:text="@{movieDetail.overview}"
+                    android:textColor="@color/gray_400"
+                    android:textSize="@dimen/text_size_twelve"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDescriptionTitleDetail" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/iv_close"
+            android:layout_width="@dimen/size_fifty"
+            android:layout_height="@dimen/size_fifty"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:elevation="@dimen/size_two"
+            android:onClick="@{()->detailViewModel.onClickBack()}"
+            android:src="@drawable/ic_back_detail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
