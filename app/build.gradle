@@ -1,7 +1,7 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 def CONFIG = { k -> "\"${project.properties.get(k)}\"" }
 def BASE_URL = "BASE_URL"
@@ -9,10 +9,9 @@ def BASE_URL = "BASE_URL"
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
-
     defaultConfig {
         applicationId "pe.meria.demovideos"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -38,9 +37,8 @@ android {
         }
     }
 
-    buildFeatures {
-        viewBinding true
-        dataBinding true
+    dataBinding {
+        enabled = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -49,6 +47,14 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+}
+
+androidExtensions {
+    experimental = true
+}
+
+repositories {
+    jcenter()
 }
 
 dependencies {
@@ -66,12 +72,12 @@ dependencies {
     implementation presentationDependencies.viewModelkoin
     implementation presentationDependencies.materialDesign
     implementation presentationDependencies.core
+    implementation presentationDependencies.avi
     implementation presentationDependencies.picasso
     implementation presentationDependencies.legacy
     implementation presentationDependencies.design
     implementation presentationDependencies.gson
     implementation repositoryDependencies.okhttp
-    implementation 'com.google.android.play:core:1.8.3'
     implementation 'com.google.android.play:core-ktx:1.8.1'
     implementation 'com.scottyab:rootbeer-lib:0.0.8'
     implementation 'androidx.core:core-ktx:1.3.2'
