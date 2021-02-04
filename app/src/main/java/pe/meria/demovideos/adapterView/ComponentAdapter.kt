@@ -1,13 +1,14 @@
 package pe.meria.demovideos.adapterView
 
-import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 import pe.meria.demovideos.R
+import pe.meria.demovideos.utils.AppUtils
 import java.util.*
 
 object ComponentAdapter {
@@ -16,7 +17,11 @@ object ComponentAdapter {
     @BindingAdapter("loadImage")
     fun loadImage(view: ImageView, imageUrl: String) {
         if (imageUrl.isNotEmpty()) {
-            Picasso.with(view.context).load(imageUrl).into(view)
+            if (AppUtils.isConnected(view.context)){
+                Picasso.with(view.context).load(imageUrl).into(view)
+            }else{
+                view.setBackgroundColor(ContextCompat.getColor(view.context,R.color.purple_100))
+            }
         }
     }
 

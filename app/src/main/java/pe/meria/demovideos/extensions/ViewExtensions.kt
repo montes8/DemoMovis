@@ -7,6 +7,12 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.Window
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
+import pe.meria.demovideos.R
+import pe.meria.demovideos.utils.AppUtils
 import pe.meria.demovideos.utils.cantDelayButtonClick
 import pe.meria.demovideos.utils.problemLog
 
@@ -24,6 +30,28 @@ fun View.invisible() {
 
 fun View.validateVisibility(value: Boolean) {
     if (value)this.visible() else this.gone()
+}
+
+
+fun ImageView.loadImageUrlPicasso(imageUrl : String,view :View){
+    if (imageUrl.isNotEmpty()) {
+        if (AppUtils.isConnected(view.context)){
+            Picasso.with(view.context).load(imageUrl).into(this,object : Callback {
+                override fun onSuccess() {
+                    view.gone()
+                }
+
+                override fun onError() {
+                    view.gone()
+                }
+
+            })
+        }else{
+            view.setBackgroundColor(ContextCompat.getColor(view.context, R.color.purple_100))
+            view.gone()
+        }
+
+    }
 }
 
 fun Activity?.showDialogCustom(resourceId: Int, func: Dialog.() -> Unit) {

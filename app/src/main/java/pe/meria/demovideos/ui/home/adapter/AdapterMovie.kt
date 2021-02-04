@@ -1,16 +1,15 @@
 package pe.meria.demovideos.ui.home.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_movie.view.*
 import pe.meria.demovideos.R
 import pe.meria.demovideos.extensions.delayClickState
+import pe.meria.demovideos.extensions.loadImageUrlPicasso
 import pe.meria.entity.Movie
 
 class AdapterMovie(var onClickItem: ((Movie) -> Unit)? = null) : RecyclerView.Adapter<AdapterMovie.EstablishmentViewHolder>() {
@@ -34,7 +33,7 @@ class AdapterMovie(var onClickItem: ((Movie) -> Unit)? = null) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: EstablishmentViewHolder, position: Int) {
         holder.bind(list[position])
-        Log.d("urlImage",list[position].posterPath)
+        holder.itemView.roundImageView.loadImageUrlPicasso(list[position].posterPath,holder.itemView.progressBarItem)
         holder.itemView.setOnClickListener{
             holder.itemView.delayClickState()
             onClickItem?.invoke(list[position])

@@ -8,8 +8,10 @@ import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import pe.meria.demovideos.R
 import pe.meria.demovideos.databinding.ActivityDetailBinding
+import pe.meria.demovideos.extensions.loadImageUrlPicasso
 import pe.meria.demovideos.ui.BaseActivity
 import pe.meria.demovideos.utils.DATA_MOVIE
+import pe.meria.demovideos.utils.EMPTY
 import pe.meria.entity.Movie
 
 class DetailActivity : BaseActivity() {
@@ -42,9 +44,7 @@ class DetailActivity : BaseActivity() {
             it.movieDetail = dataMovie
             it.lifecycleOwner = this
         }
-        if (dataMovie?.backdropPath?.isNotEmpty() == true){
-            Picasso.with(this).load(dataMovie?.backdropPath).into(activityDetailBinding.imgBannerFood)
-        }
+        activityDetailBinding.imgBannerFood.loadImageUrlPicasso(dataMovie?.backdropPath?: EMPTY,activityDetailBinding.progressBarImg)
     }
 
     override fun getViewModel() = detailViewModel

@@ -23,6 +23,7 @@ class AppUseCase(private val context: Context,
 
     private fun listMovie():List<Movie>{
         val list = appRepository.getListMovie()
+        appDataBase.deleteTable()
         appDataBase.saveListMovie(list as ArrayList<Movie>)
         return list
     }
