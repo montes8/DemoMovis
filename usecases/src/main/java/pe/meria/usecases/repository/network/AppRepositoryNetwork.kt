@@ -1,4 +1,4 @@
-package pe.meria.usecases.repository
+package pe.meria.usecases.repository.network
 
 import pe.meria.entity.Movie
 import java.lang.Exception

@@ -1,6 +1,6 @@
 package pe.meria.usecases.usecases
 
-import pe.meria.usecases.repository.AppRepositoryPreference
+import pe.meria.usecases.repository.preferences.AppRepositoryPreference
 import pe.meria.usecases.utils.Utils.getLogin
 
 class UserUseCase(private val appRepositoryPreference: AppRepositoryPreference) {

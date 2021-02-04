@@ -12,7 +12,7 @@ import pe.meria.repository.BuildConfig
 import pe.meria.repository.repository.ServiceApi
 import pe.meria.repository.repository.api.AppNetwork
 import pe.meria.repository.repository.utils.*
-import pe.meria.usecases.repository.AppRepositoryNetwork
+import pe.meria.usecases.repository.network.AppRepositoryNetwork
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit

@@ -5,9 +5,10 @@ import pe.meria.repository.repository.ServiceApi
 import pe.meria.repository.repository.entity.response.BaseResponse
 import pe.meria.repository.repository.toCompleteErrorModel
 import pe.meria.repository.repository.validateBody
-import pe.meria.usecases.repository.AppRepositoryNetwork
+import pe.meria.usecases.repository.network.AppRepositoryNetwork
 
-class AppNetwork(private val apiConfig: ServiceApi) : AppRepositoryNetwork {
+class AppNetwork(private val apiConfig: ServiceApi) :
+    AppRepositoryNetwork {
 
 
     @Throws(Exception::class)

@@ -9,6 +9,7 @@ import org.koin.core.logger.Level
 import pe.meria.demovideos.BuildConfig
 import pe.meria.demovideos.R
 import pe.meria.demovideos.di.viewModelsModule
+import pe.meria.repository.local.database.di.databaseModule
 import pe.meria.repository.local.preferences.ENCRYPTION_KEY
 import pe.meria.repository.local.preferences.preferencesModule
 import pe.meria.repository.repository.di.networkModule
@@ -26,7 +27,7 @@ class DemoMovieApplication : Application() {
             modules(
                 listOf(
                     viewModelsModule, useCaseModule,
-                    preferencesModule,networkModule
+                    preferencesModule,networkModule,databaseModule
                 )
             )
            getKoin().setProperty(NAME_BASE_URL,

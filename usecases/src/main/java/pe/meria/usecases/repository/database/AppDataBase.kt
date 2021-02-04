@@ -1,4 +1,4 @@
-package pe.meria.usecases.repository
+package pe.meria.usecases.repository.database
 
 import pe.meria.entity.Movie
 import java.lang.Exception
@@ -9,7 +9,10 @@ interface AppDataBase {
     fun getListMovie(): List<Movie>
 
     @Throws(Exception::class)
-    fun saveListMovie(list : List<Movie>)
+    fun saveListMovie(list : ArrayList<Movie>)
+
+    @Throws(Exception::class)
+    fun deleteTable()
 
 
 }

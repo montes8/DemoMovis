@@ -7,10 +7,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-open class BaseViewModel : ViewModel() {
+open class BaseViewModel() : ViewModel() {
     val loadingLiveData = MutableLiveData<Boolean>()
     val errorLiveData = MutableLiveData<Exception>()
-    val attachInternet = MutableLiveData<Boolean>()
 
     fun execute(loading : Boolean = true,func: () -> Unit) {
         GlobalScope.launch {

@@ -1,6 +1,6 @@
 package pe.meria.repository.local.preferences
 
-import pe.meria.usecases.repository.AppRepositoryPreference
+import pe.meria.usecases.repository.preferences.AppRepositoryPreference
 
 class AppPreference(private val sharedPreferenceManager: PreferencesManager) :
     AppRepositoryPreference {

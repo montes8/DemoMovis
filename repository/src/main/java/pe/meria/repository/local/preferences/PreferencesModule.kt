@@ -1,7 +1,7 @@
 package pe.meria.repository.local.preferences
 
 import org.koin.dsl.module
-import pe.meria.usecases.repository.AppRepositoryPreference
+import pe.meria.usecases.repository.preferences.AppRepositoryPreference
 
 val preferencesModule = module {
     single {

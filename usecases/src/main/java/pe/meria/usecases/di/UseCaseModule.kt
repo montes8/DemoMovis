@@ -5,7 +5,7 @@ import pe.meria.usecases.usecases.AppUseCase
 import pe.meria.usecases.usecases.UserUseCase
 
 val useCaseModule = module {
-    single { AppUseCase(get(), get(),get()) }
+    single { AppUseCase(get(), get(),get(),get()) }
     single { UserUseCase(get()) }
 
 }
