@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="signingViewModel"
+            type="pe.meria.demovideos.ui.signing.SigningViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/profile_image"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_one_hundred"
+                android:contentDescription="@null"
+                android:src="@drawable/logo_food"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_thirty_five"
+                android:layout_marginTop="@dimen/size_forty_five"
+                android:layout_marginEnd="@dimen/size_thirty_five"
+                android:background="@color/gray_300"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edNameUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_thirty_three"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size_fifteen"
+                    android:background="@color/white"
+                    android:drawableStart="@drawable/ic_login"
+                    android:drawablePadding="@dimen/size_fifteen"
+                    android:ems="13"
+                    android:hint="@string/text_hint_email"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/size_five"
+                    android:paddingEnd="@dimen/general"
+                    android:text="@={signingViewModel.userEmail}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_fourteen"
+                    android:textStyle="normal" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edPassUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_thirty_three"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size_fifteen"
+                    android:background="@color/white"
+                    android:drawableStart="@drawable/ic_pass"
+                    android:drawablePadding="@dimen/size_fifteen"
+                    android:ems="13"
+                    android:hint="@string/text_hint_pass"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/size_five"
+                    android:paddingEnd="@dimen/general"
+                    android:text="@={signingViewModel.password}"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+                <Button
+                    android:id="@+id/btnEnter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_thirty_five"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size_fifteen"
+                    android:background="@drawable/bg_round_blue"
+                    android:ems="13"
+                    android:fontFamily="@font/flexo_bold"
+                    android:onClick="@{()->signingViewModel.clickLogin()}"
+                    android:text="@string/btn_enter"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size_ten"
+                    android:layout_marginBottom="@dimen/text_size_ten"
+                    android:onClick="@{()->signingViewModel.onClickForgotPass()}"
+                    android:text="@string/text_forgot_pass"
+                    android:visibility="gone" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

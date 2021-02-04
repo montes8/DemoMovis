@@ -60,7 +60,7 @@ class SplashActivity : BaseActivity() {
             if (value) {
                 HomeActivity.newInstance(this)
             } else {
-                SigningActivity.newInstance(this)
+                HomeActivity.newInstance(this)
 
             }
             finish()

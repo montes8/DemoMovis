@@ -1,12 +1,14 @@
 package pe.meria.demovideos.adapterView
 
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 import pe.meria.demovideos.R
+import java.util.*
 
 object ComponentAdapter {
 
@@ -26,7 +28,22 @@ object ComponentAdapter {
         }else{
             view.animation = AnimationUtils.loadAnimation(view.context, R.anim.ani_bottom)
         }
+    }
 
+
+    @JvmStatic
+    @BindingAdapter("setTextInt")
+    fun setTextInt(view: TextView,value : Double) {
+       view.text = value.toString()
+    }
+
+    @JvmStatic
+    @BindingAdapter("setTextLanguageView")
+    fun setTextLanguageView(view: TextView,value : String) {
+        val locale = Locale(value)
+        Locale.setDefault(locale)
+        view.text = Locale.getDefault().language
+       Log.d("language","${Locale.getDefault().language}")
     }
 
 }

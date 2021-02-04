@@ -88,41 +88,13 @@ class ApiInterceptor(
     override fun intercept(chain: Interceptor.Chain): Response {
 
         var request = chain.request()
-        request = request.newBuilder()
-            .header("Content-Type",
-                CONTENT_TYPE
-            )
+      /*  request = request.newBuilder().header("Content-Type", CONTENT_TYPE)
             .header("os", PLATFORM)
             .header("x-density", getDensity(context).toString())
             .header("x-width", getWidth(context).toString())
             .header("x-height", getHeight(context).toString())
-            .build()
-
-        try {
+            .build()*/
             return chain.proceed(request)
-        } catch (ex: Exception) {
-            when (ex) {
-                is SocketTimeoutException -> {
-                    throw NetworkException(
-                        10,
-                        "Se perdió la conexion.",
-                        "Se perdió la conexion."
-                    )
-                }
-                is UnknownHostException -> {
-                    throw NetworkException(
-                        10,
-                        "Se perdió la conexion.",
-                        "Se perdió la conexion."
-                    )
-                }
-                else -> {
-                    throw ex
-                }
-            }
-
-
-        }
 
     }
 }

@@ -15,14 +15,14 @@ class AppUseCase(
 ) {
 
     fun getListMovie(): List<Movie> {
-        var list : List<Movie> = ArrayList()
+      /*  var list : List<Movie> = ArrayList()
         if (Utils.isConnected(context)) {
             list = appRepository.getListMovie()
-            //AppDataBase.saveListMovie(list)
+           AppDataBase.saveListMovie(list)
         } else {
-           // list =  AppDataBase.getListMovie()
-        }
-        return list
+         list =  AppDataBase.getListMovie()
+        }*/
+        return appRepository.getListMovie()
     }
 
     fun validateLogin() = appRepositoryPreference.getLogin()

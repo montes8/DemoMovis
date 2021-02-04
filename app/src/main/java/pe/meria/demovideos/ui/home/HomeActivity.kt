@@ -2,11 +2,19 @@ package pe.meria.demovideos.ui.home
 
 import android.content.Context
 import android.content.Intent
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import pe.meria.demovideos.R
+import pe.meria.demovideos.databinding.ActivityHomeBinding
 import pe.meria.demovideos.ui.BaseActivity
-import pe.meria.demovideos.ui.BaseViewModel
+import pe.meria.demovideos.ui.home.adapter.AdapterMovie
 
 class HomeActivity : BaseActivity() {
+
+    private val homeViewModel                : HomeViewModel by viewModel(clazz = HomeViewModel::class)
+    private lateinit var activityHomeBinding : ActivityHomeBinding
+    private var adapterMovie                 : AdapterMovie?       = null
 
 
     companion object {
@@ -20,14 +28,26 @@ class HomeActivity : BaseActivity() {
     override fun getLayout() = R.layout.activity_home
 
     override fun setUpView() {
-
+        bindLayout()
+        homeViewModel.getListMovie()
     }
 
-    override fun getViewModel(): BaseViewModel? {
-      return null
+    private fun bindLayout() {
+        activityHomeBinding = DataBindingUtil.setContentView(this, getLayout())
+        activityHomeBinding.let { it.lifecycleOwner = this }
+        initList()
     }
+
+    private fun initList(){
+        adapterMovie = AdapterMovie()
+        activityHomeBinding.rvMovie.adapter = adapterMovie
+    }
+
+    override fun getViewModel()  = homeViewModel
 
     override fun observeViewModel() {
+        homeViewModel.movieListLiveData.observe(this, Observer {
+            it.apply { if (this.isNotEmpty()){ adapterMovie?.list = this} }
+        })
     }
-
 }

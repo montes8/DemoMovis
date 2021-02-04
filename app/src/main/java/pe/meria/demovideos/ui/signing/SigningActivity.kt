@@ -17,7 +17,7 @@ class SigningActivity : BaseActivity() {
         }
     }
 
-    override fun getLayout() = R.layout.activity_signing_activity
+    override fun getLayout() = R.layout.activity_signing
 
     override fun setUpView() {
     }

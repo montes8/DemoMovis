@@ -5,6 +5,7 @@ import java.io.Serializable
 data class Movie  (
     var id : Long,
     var adult : Boolean,
+    var backdropPath : String,
     var originalLanguage : String,
     var originalTitle : String,
     var overview : String,

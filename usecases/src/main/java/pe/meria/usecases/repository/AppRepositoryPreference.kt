@@ -4,7 +4,6 @@ import java.lang.Exception
 
 interface AppRepositoryPreference {
 
-
     @Throws(Exception::class)
     fun getLogin(): Boolean
 

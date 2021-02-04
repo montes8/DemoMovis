@@ -13,9 +13,9 @@ class AppNetwork(private val apiConfig: ServiceApi) : AppRepositoryNetwork {
     @Throws(Exception::class)
     override fun getListMovie(): List<Movie> {
         val callResponse =
-            apiConfig.getListMovie("1","")
+            apiConfig.getListMovie("1","7a876180bb2af25b9469dafdee4ee007")
         val response = callResponse.execute()
-        if (!response.isSuccessful) {
+       if (!response.isSuccessful) {
             throw response.errorBody().toCompleteErrorModel()?.error?.getException() ?: Exception()
         }
         return BaseResponse.toListMovie(response.validateBody())
