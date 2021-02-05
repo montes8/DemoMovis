@@ -13,16 +13,16 @@ class AppUseCase(private val context: Context,
     private val appDataBase: AppDataBase
 ) {
 
-    fun getListMovie(): List<Movie> {
+    fun getListMovie( page :Int): List<Movie> {
         return if (isConnected(context)){
-            listMovie()
+            listMovie(page)
         }else{
             listMovieDataBase()
         }
     }
 
-    private fun listMovie():List<Movie>{
-        val list = appRepository.getListMovie()
+    private fun listMovie( page :Int):List<Movie>{
+        val list = appRepository.getListMovie(page)
         appDataBase.deleteTable()
         appDataBase.saveListMovie(list as ArrayList<Movie>)
         return list

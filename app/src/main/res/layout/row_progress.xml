@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable
+            name="visible"
+            type="Boolean" />
+        <import type="android.view.View" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/pg_loading"
+        style="@style/AVLoadingIndicatorView.Large"
+        android:layout_width="45dp"
+        android:layout_height="35dp"
+        android:layout_centerInParent="true"
+        android:paddingStart="@dimen/size_five"
+        android:paddingEnd="@dimen/size_five"
+        android:visibility="@{visible ? View.VISIBLE : View.GONE}"
+        app:indicatorColor="@color/colorPrimary"
+        app:indicatorName="BallSpinFadeLoaderIndicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxHeight="300dp"
+        app:maxWidth="300dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

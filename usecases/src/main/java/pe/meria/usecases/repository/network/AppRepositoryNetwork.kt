@@ -6,7 +6,7 @@ import java.lang.Exception
 interface AppRepositoryNetwork {
 
     @Throws(Exception::class)
-    fun getListMovie(): List<Movie>
+    fun getListMovie(page :Int): List<Movie>
 
 
 }

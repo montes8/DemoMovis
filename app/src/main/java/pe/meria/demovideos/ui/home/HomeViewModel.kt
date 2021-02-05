@@ -9,9 +9,9 @@ class HomeViewModel(private val appUseCase: AppUseCase) : BaseViewModel() {
 
     val movieListLiveData = MutableLiveData<List<Movie>>()
 
-    fun getListMovie(){
-        execute{
-           val response = appUseCase.getListMovie()
+    fun getListMovie(loading: Boolean, page :Int){
+        execute(loading){
+           val response = appUseCase.getListMovie(page)
             movieListLiveData.postValue(response) }
     }
 
