@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import pe.meria.demovideos.R
 import pe.meria.demovideos.databinding.ActivitySigningBinding
+import pe.meria.demovideos.extensions.animForm
 import pe.meria.demovideos.ui.BaseActivity
 import pe.meria.demovideos.ui.home.HomeActivity
 
@@ -28,6 +29,16 @@ class SigningActivity : BaseActivity() {
 
     override fun setUpView() {
         bindLayout()
+        firstAnimations()
+    }
+
+    private fun firstAnimations() {
+        this.activitySigningBinding.profileImage.startAnimation(animForm)
+        this.activitySigningBinding.linearLayout3.startAnimation(animForm)
+        this.activitySigningBinding.edNameUser.startAnimation(animForm)
+        this.activitySigningBinding.edPassUser.startAnimation(animForm)
+        this.activitySigningBinding.btnEnter.startAnimation(animForm)
+
     }
 
     private fun bindLayout() {

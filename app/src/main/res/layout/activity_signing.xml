@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/profile_image"
+                android:id="@+id/profileImage"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_one_hundred"
                 android:contentDescription="@null"
@@ -42,7 +42,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_image">
+                app:layout_constraintTop_toBottomOf="@+id/profileImage">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edNameUser"

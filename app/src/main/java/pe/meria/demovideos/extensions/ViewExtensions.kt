@@ -4,10 +4,13 @@ import android.app.Activity
 import android.app.Dialog
 import android.os.Handler
 import android.os.Looper
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.Window
+import android.view.animation.*
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -43,6 +46,21 @@ fun Activity?.showDialogCustom(resourceId: Int, func: Dialog.() -> Unit) {
     dialog.func()
     dialog.show()
 }
+
+val Activity.screenWidthSize: Int
+    get() {
+        val metrics = DisplayMetrics()
+        this.windowManager.defaultDisplay.getRealMetrics(metrics)
+        return metrics.widthPixels
+    }
+
+val Activity.screenHeightSize: Int
+    get() {
+        val metrics = DisplayMetrics()
+        this.windowManager.defaultDisplay.getRealMetrics(metrics)
+        return metrics.heightPixels
+    }
+
 
 
 fun View?.delayClickState(timeMillis: Long = 300) {
