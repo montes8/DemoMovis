@@ -9,12 +9,18 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import pe.meria.repository.BuildConfig
+import pe.meria.repository.R
 import pe.meria.repository.repository.ServiceApi
 import pe.meria.repository.repository.api.AppNetwork
+import pe.meria.repository.repository.exception.NetworkException
+import pe.meria.repository.repository.exception.NetworkExceptionConnection
 import pe.meria.repository.repository.utils.*
 import pe.meria.usecases.repository.network.AppRepositoryNetwork
+import pe.meria.usecases.utils.Utils.isConnected
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
 
 val networkModule = module {
@@ -70,7 +76,9 @@ class ApiInterceptor(
     private val context: Context
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-
+        if (!isConnected(context)) {
+            throw NetworkExceptionConnection(10,errorConnection,errorConnection)
+        }
         var request = chain.request()
        request = request.newBuilder().header("Content-Type", CONTENT_TYPE)
             .header("os", PLATFORM)
@@ -78,7 +86,23 @@ class ApiInterceptor(
             .header("x-width", getWidth(context).toString())
             .header("x-height", getHeight(context).toString())
             .build()
-            return chain.proceed(request)
 
+        try {
+            return chain.proceed(request)
+        } catch (ex: Exception) {
+            when (ex) {
+                is SocketTimeoutException -> {
+                    throw NetworkException(11,errorConnection,errorConnection)
+                }
+                is UnknownHostException -> {
+                    throw NetworkException(11,errorConnection,errorConnection)
+                }
+                else -> {
+                    throw ex
+                }
+            }
+
+
+        }
     }
 }

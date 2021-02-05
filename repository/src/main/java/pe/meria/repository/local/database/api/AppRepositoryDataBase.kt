@@ -9,7 +9,6 @@ import pe.meria.usecases.repository.database.AppDataBase
 
 class AppRepositoryDataBase(private val movieDao: MovieDao) : AppDataBase {
 
-
     override fun getListMovie(): List<Movie> {
         val list =  MovieEntity.toListMovies(movieDao.listMovie())
         if (list.isNotEmpty()){

@@ -1,4 +1,4 @@
-package pe.meria.repository.local.preferences
+package pe.meria.repository.local.preferences.manager
 
 import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
@@ -48,15 +48,6 @@ class PreferencesManager(context: Context, key :String) {
             .edit()
             .putLong(key, value)
             .apply()
-    }
-
-    fun getString(key: String): String {
-        return encryptPreferences.getString(key, String()) ?: String()
-    }
-
-
-    fun getInt(key: String): Int {
-        return encryptPreferences.getInt(key, 0)
     }
 
     fun getBoolean(key: String): Boolean {

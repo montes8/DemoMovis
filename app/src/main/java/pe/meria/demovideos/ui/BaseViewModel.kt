@@ -7,7 +7,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-open class BaseViewModel() : ViewModel() {
+open class BaseViewModel : ViewModel() {
     val loadingLiveData = MutableLiveData<Boolean>()
     val errorLiveData = MutableLiveData<Exception>()
 
@@ -20,8 +20,7 @@ open class BaseViewModel() : ViewModel() {
             } catch (ex: Exception) {
                 ex.printStackTrace()
                 errorLiveData.postValue(ex)
-                loadingLiveData.postValue(false)
-            }
+                loadingLiveData.postValue(false) }
         }
     }
 
@@ -32,8 +31,6 @@ open class BaseViewModel() : ViewModel() {
             } catch (ex: Exception) {
                 ex.printStackTrace()
                 errorLiveData.postValue(ex)
-            }
-        }
+            } }
     }
-
 }

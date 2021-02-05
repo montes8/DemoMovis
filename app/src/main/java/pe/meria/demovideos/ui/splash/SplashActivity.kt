@@ -11,14 +11,13 @@ import pe.meria.demovideos.R
 import pe.meria.demovideos.databinding.ActivitySplashBinding
 import pe.meria.demovideos.ui.AppViewModel
 import pe.meria.demovideos.ui.BaseActivity
-import pe.meria.demovideos.ui.BaseViewModel
 import pe.meria.demovideos.ui.home.HomeActivity
 import pe.meria.demovideos.ui.signing.SigningActivity
 
 class SplashActivity : BaseActivity() {
 
-    private val appViewModel: AppViewModel by viewModel(clazz = AppViewModel::class)
-    private lateinit var activitySplashBinding: ActivitySplashBinding
+    private val appViewModel                   : AppViewModel by viewModel(clazz = AppViewModel::class)
+    private lateinit var activitySplashBinding : ActivitySplashBinding
 
     companion object {
         fun newInstance(context: Context) {
@@ -58,7 +57,6 @@ class SplashActivity : BaseActivity() {
                 HomeActivity.newInstance(this)
             } else {
                 SigningActivity.newInstance(this)
-
             }
             finish()
         }, 3000)

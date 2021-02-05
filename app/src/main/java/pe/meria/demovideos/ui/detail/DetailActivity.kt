@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import pe.meria.demovideos.R
 import pe.meria.demovideos.databinding.ActivityDetailBinding
@@ -16,10 +15,9 @@ import pe.meria.entity.Movie
 
 class DetailActivity : BaseActivity() {
 
-    private val detailViewModel                : DetailViewModel by viewModel(clazz = DetailViewModel::class)
+    private val          detailViewModel       : DetailViewModel by viewModel(clazz = DetailViewModel::class)
     private lateinit var activityDetailBinding : ActivityDetailBinding
-
-    private var dataMovie : Movie? = null
+    private var          dataMovie             : Movie? = null
 
     companion object {
         fun newInstance(context: Context,data : Movie){
@@ -34,7 +32,6 @@ class DetailActivity : BaseActivity() {
     override fun setUpView() {
         intent.let { dataMovie = it.getSerializableExtra(DATA_MOVIE) as Movie?}
         bindLayout()
-
     }
 
     private fun bindLayout() {
@@ -50,9 +47,6 @@ class DetailActivity : BaseActivity() {
     override fun getViewModel() = detailViewModel
 
     override fun observeViewModel() {
-         detailViewModel.successClickBack.observe(this, Observer {
-             onBackPressed()
-         })
+         detailViewModel.successClickBack.observe(this, Observer { onBackPressed() })
     }
-
 }

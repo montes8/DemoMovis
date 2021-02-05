@@ -14,18 +14,6 @@ import java.util.*
 object ComponentAdapter {
 
     @JvmStatic
-    @BindingAdapter("loadImage")
-    fun loadImage(view: ImageView, imageUrl: String) {
-        if (imageUrl.isNotEmpty()) {
-            if (AppUtils.isConnected(view.context)){
-                Picasso.with(view.context).load(imageUrl).into(view)
-            }else{
-                view.setBackgroundColor(ContextCompat.getColor(view.context,R.color.purple_100))
-            }
-        }
-    }
-
-    @JvmStatic
     @BindingAdapter("animationSplash")
     fun animationSplash(view: View,type : Int) {
         if (type == 1){

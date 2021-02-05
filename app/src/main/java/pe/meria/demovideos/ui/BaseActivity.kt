@@ -44,18 +44,12 @@ abstract class BaseActivity : AppCompatActivity(){
     private fun observeMainViewModel() {
         this.observeViewModel()
         getViewModel()?.let { viewModel ->
-            viewModel.errorLiveData.observe(this, Observer { error ->
-                this.showMessageException(error)
-            })
-
-            viewModel.loadingLiveData.observe(
-                this,
-                Observer { isLoading -> showLoading(isLoading) })
-
+            viewModel.errorLiveData.observe(this, Observer { error -> this.showMessageException(error) })
+            viewModel.loadingLiveData.observe(this, Observer { isLoading -> showLoading(isLoading) })
         }
     }
 
-      fun showMessageException(ex: Exception) {
+      private fun showMessageException(ex: Exception) {
          when(ex) {
              is UnAuthorizeException -> errorExpireSession(ex.message)
              is GenericException -> errorGeneric(ex.message)
@@ -66,14 +60,14 @@ abstract class BaseActivity : AppCompatActivity(){
          }
     }
 
-      fun showLoading(isLoading: Boolean) {
+      private fun showLoading(isLoading: Boolean) {
         mProgressBar.apply {
             if (isLoading) this?.show() else this?.dismiss()
         }
     }
 
 
-     fun errorGeneric(message: String?) {
+     private fun errorGeneric(message: String?) {
          dialogGeneric(message,this)
     }
 
@@ -81,7 +75,6 @@ abstract class BaseActivity : AppCompatActivity(){
             AlertDialog.Builder(ContextThemeWrapper(this,R.style.AppThemeBlue))
                 .setTitle(R.string.app_name)
                 .setCancelable(false)
-         //.setMessage(R.string.exception_no_internet_error)
                 .setMessage(R.string.exception_no_internet_error_disponible)
                 .setPositiveButton(R.string.dialog_accept) { dialogInterface, _ -> dialogInterface.dismiss() }
                 .show()
@@ -107,9 +100,5 @@ abstract class BaseActivity : AppCompatActivity(){
         string?.let {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }?:Toast.makeText(this, this.getString(R.string.error_generic), Toast.LENGTH_SHORT).show()
-
     }
-
-
-
 }

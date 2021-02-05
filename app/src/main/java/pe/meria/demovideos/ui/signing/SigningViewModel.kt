@@ -14,9 +14,7 @@ class SigningViewModel(private val userUseCase: UserUseCase,private val context:
 
     val userName = MutableLiveData<String>(EMPTY)
     val password = MutableLiveData<String>(EMPTY)
-
     val successLoginLiveData = MutableLiveData<Boolean>()
-
 
     fun clickLogin() {
         if (validateData()){
@@ -26,7 +24,6 @@ class SigningViewModel(private val userUseCase: UserUseCase,private val context:
             }
         }
     }
-
 
     private fun validateData(): Boolean {
         if (TextUtils.isEmpty(userName.value)) {

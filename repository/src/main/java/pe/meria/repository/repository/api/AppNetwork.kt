@@ -10,7 +10,6 @@ import pe.meria.usecases.repository.network.AppRepositoryNetwork
 class AppNetwork(private val apiConfig: ServiceApi) :
     AppRepositoryNetwork {
 
-
     @Throws(Exception::class)
     override fun getListMovie(): List<Movie> {
         val callResponse =

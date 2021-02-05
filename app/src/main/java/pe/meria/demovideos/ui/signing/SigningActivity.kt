@@ -15,7 +15,7 @@ import pe.meria.demovideos.ui.home.HomeViewModel
 
 class SigningActivity : BaseActivity() {
 
-    private val signingViewModel             : SigningViewModel by viewModel(clazz = SigningViewModel::class)
+    private val signingViewModel                : SigningViewModel by viewModel(clazz = SigningViewModel::class)
     private lateinit var activitySigningBinding : ActivitySigningBinding
 
 
@@ -45,13 +45,8 @@ class SigningActivity : BaseActivity() {
     override fun observeViewModel() {
         signingViewModel.successLoginLiveData.observe(this, Observer {
             it.apply {
-                if (this){
-                    HomeActivity.newInstance(this@SigningActivity)
-                }else{
-                    toastGeneric(getString(R.string.error_login))
-                }
+                if (this){ HomeActivity.newInstance(this@SigningActivity) }else{ toastGeneric(getString(R.string.error_login)) }
             }
         })
     }
-
 }

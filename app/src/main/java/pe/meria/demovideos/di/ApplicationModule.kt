@@ -10,8 +10,7 @@ import pe.meria.demovideos.ui.signing.SigningViewModel
 
 val viewModelsModule = module {
     viewModel { AppViewModel(get()) }
-    viewModel { HomeViewModel(get(),get()) }
+    viewModel { HomeViewModel(get()) }
     viewModel { DetailViewModel() }
     viewModel { SigningViewModel(get(),get()) }
-
 }

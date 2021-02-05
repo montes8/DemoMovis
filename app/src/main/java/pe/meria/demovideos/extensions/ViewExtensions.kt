@@ -24,33 +24,18 @@ fun View.visible() {
     this.visibility = View.VISIBLE
 }
 
-fun View.invisible() {
-    this.visibility = View.INVISIBLE
-}
-
-fun View.validateVisibility(value: Boolean) {
-    if (value)this.visible() else this.gone()
-}
-
-
 fun ImageView.loadImageUrlPicasso(imageUrl : String,view :View){
     if (imageUrl.isNotEmpty()) {
         if (AppUtils.isConnected(view.context)){
             Picasso.with(view.context).load(imageUrl).into(this,object : Callback {
-                override fun onSuccess() {
-                    view.gone()
-                }
+                override fun onSuccess() { view.gone() }
 
-                override fun onError() {
-                    view.gone()
-                }
-
+                override fun onError() { view.gone() }
             })
         }else{
             view.setBackgroundColor(ContextCompat.getColor(view.context, R.color.purple_100))
             view.gone()
         }
-
     }
 }
 

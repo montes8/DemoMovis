@@ -10,8 +10,6 @@ class AppViewModel(private val appUseCase: AppUseCase) : BaseViewModel() {
     fun validateLogin(){
         executeRemoveLoading {
             val response = appUseCase.validateLogin()
-            successLoginLiveData.postValue(response)
-        }
+            successLoginLiveData.postValue(response) }
     }
-
 }

@@ -10,8 +10,8 @@ import pe.meria.demovideos.BuildConfig
 import pe.meria.demovideos.R
 import pe.meria.demovideos.di.viewModelsModule
 import pe.meria.repository.local.database.di.databaseModule
-import pe.meria.repository.local.preferences.ENCRYPTION_KEY
-import pe.meria.repository.local.preferences.preferencesModule
+import pe.meria.repository.local.preferences.utils.ENCRYPTION_KEY
+import pe.meria.repository.local.preferences.di.preferencesModule
 import pe.meria.repository.repository.di.networkModule
 import pe.meria.repository.repository.utils.NAME_BASE_URL
 import pe.meria.usecases.di.useCaseModule
