@@ -3,7 +3,7 @@ package pe.meria.demovideos.component
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class PaginationScrollListener(var layoutManager: LinearLayoutManager) :
+abstract class PaginationScrollListener(private var layoutManager: LinearLayoutManager) :
 
     RecyclerView.OnScrollListener(){
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

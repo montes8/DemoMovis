@@ -17,9 +17,7 @@ class AppRepositoryDataBase(private val movieDao: MovieDao) : AppDataBase {
             pagination =pagination* 20
             Log.d("paginationTwo","$pagination")
         }
-
         Log.d("paginationThree","$pagination")
-
         val list =  MovieEntity.toListMovies(movieDao.listMovie(20,pagination))
         return if (list.isNotEmpty()){
             list
@@ -29,7 +27,6 @@ class AppRepositoryDataBase(private val movieDao: MovieDao) : AppDataBase {
             }else{
                 list
             }
-
         }
     }
 

@@ -2,13 +2,9 @@ package pe.meria.demovideos.adapterView
 
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import com.squareup.picasso.Picasso
 import pe.meria.demovideos.R
-import pe.meria.demovideos.utils.AppUtils
 import java.util.*
 
 object ComponentAdapter {

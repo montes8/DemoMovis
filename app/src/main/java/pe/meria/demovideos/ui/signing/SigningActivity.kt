@@ -6,12 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import pe.meria.demovideos.R
-import pe.meria.demovideos.databinding.ActivityHomeBinding
 import pe.meria.demovideos.databinding.ActivitySigningBinding
 import pe.meria.demovideos.ui.BaseActivity
-import pe.meria.demovideos.ui.BaseViewModel
 import pe.meria.demovideos.ui.home.HomeActivity
-import pe.meria.demovideos.ui.home.HomeViewModel
 
 class SigningActivity : BaseActivity() {
 
@@ -45,7 +42,10 @@ class SigningActivity : BaseActivity() {
     override fun observeViewModel() {
         signingViewModel.successLoginLiveData.observe(this, Observer {
             it.apply {
-                if (this){ HomeActivity.newInstance(this@SigningActivity) }else{ toastGeneric(getString(R.string.error_login)) }
+                if (this){
+                    overridePendingTransition(R.anim.left_in, R.anim.left_out)
+                    HomeActivity.newInstance(this@SigningActivity)
+                }else{ toastGeneric(getString(R.string.error_login)) }
             }
         })
     }

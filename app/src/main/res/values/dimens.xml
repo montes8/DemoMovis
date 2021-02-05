@@ -1,7 +1,7 @@
 <resources>
 
 
-    <!-- dimen generales -->
+    <!-- dimen general -->
     <dimen name="general">0dp</dimen>
     <dimen name="size_two">2dp</dimen>
     <dimen name="size_five">5dp</dimen>
@@ -26,7 +26,7 @@
     <dimen name="size_two_hundred_thirty_four">234dp</dimen>
     <dimen name="size_two_hundred_fifty">250dp</dimen>
 
-    <!-- tamaños de letras -->
+    <!-- size de text -->
     <dimen name="text_size_twelve">12sp</dimen>
     <dimen name="text_size_fourteen">14sp</dimen>
     <dimen name="text_size_fifteen">15sp</dimen>

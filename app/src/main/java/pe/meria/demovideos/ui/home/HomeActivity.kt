@@ -101,7 +101,10 @@ class HomeActivity : BaseActivity() {
             page++
             adapterMovie?.addList(list as ArrayList<Movie>)
             adapterMovie?.onClickItem={
-                it.apply { DetailActivity.newInstance(this@HomeActivity,it) }
+                it.apply {
+                    overridePendingTransition(R.anim.left_in, R.anim.left_out)
+                    DetailActivity.newInstance(this@HomeActivity,it)
+                }
             }
         }else{
             pageNext = false

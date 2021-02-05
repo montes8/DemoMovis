@@ -3,13 +3,8 @@
 
 
     <!--message error generic-->
-    <string name="network_error">Verificar su conexión a internet</string>
-    <string name="error_timeout">Se cortó la conexión</string>
     <string name="error_generic">Ocurrio un error inesperado</string>
-    <string name="denied_permission_camera">Necesitas este permiso para acceder a la camara</string>
-    <string name="denied_permission_location">Necesitas este permiso para acceder a ubicar los establecimiento cerca</string>
     <string name="error_go">Ocurrió un error de conexión, inténtelo más tarde</string>
-    <string name="exception_no_internet_error">Error de conexión de internet \nPor favor verifica tu conexión.</string>
     <string name="exception_no_internet_error_disponible">Este servicio no se encuentra\n disponible en este horario o , \nSe cortó la conexión</string>
 
 

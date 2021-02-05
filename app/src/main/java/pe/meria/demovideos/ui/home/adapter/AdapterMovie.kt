@@ -30,11 +30,6 @@ class AdapterMovie(var onClickItem: ((Movie) -> Unit)? = null) :RecyclerView.Ada
         notifyDataSetChanged()
     }
 
-    fun clearListMovie(){
-        list.clear()
-        notifyDataSetChanged()
-    }
-
     override fun getItemViewType(position: Int): Int {
         if (position == list.size) {
             return LoadingStatus.ACTIVE.value

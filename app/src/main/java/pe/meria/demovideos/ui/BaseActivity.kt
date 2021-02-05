@@ -94,8 +94,6 @@ abstract class BaseActivity : AppCompatActivity(){
             .show()
     }
 
-
-
      fun toastGeneric(string: String?) {
         string?.let {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
