@@ -130,7 +130,7 @@ class HomeActivity : BaseActivity() {
             this.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
             this.window?.setBackgroundDrawable(backgroundColor)
             this.window?.attributes?.windowAnimations = R.style.DialogTheme
-            this.btnCancelDialog.visible()
+            this.btnCancelDialog.visible
             this.btnAcceptDialog.setOnClickListener {
                 homeViewModel.logout()
                 SigningActivity.newInstance(this@HomeActivity)
