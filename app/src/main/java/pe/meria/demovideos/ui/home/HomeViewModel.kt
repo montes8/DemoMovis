@@ -1,5 +1,6 @@
 package pe.meria.demovideos.ui.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import pe.meria.demovideos.ui.BaseViewModel
 import pe.meria.entity.Movie
@@ -12,6 +13,8 @@ class HomeViewModel(private val appUseCase: AppUseCase) : BaseViewModel() {
     fun getListMovie(loading: Boolean, page :Int){
         execute(loading){
            val response = appUseCase.getListMovie(page)
+            Log.d("listMovie","$response")
+            Log.d("listMovieCount","${response.size}")
             movieListLiveData.postValue(response) }
     }
 

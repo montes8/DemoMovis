@@ -17,18 +17,20 @@ class AppUseCase(private val context: Context,
         return if (isConnected(context)){
             listMovie(page)
         }else{
-            listMovieDataBase()
+            listMovieDataBase(page)
         }
     }
 
     private fun listMovie( page :Int):List<Movie>{
         val list = appRepository.getListMovie(page)
-        appDataBase.deleteTable()
+        if (page == 1){
+            appDataBase.deleteTable()
+        }
         appDataBase.saveListMovie(list as ArrayList<Movie>)
         return list
     }
-    private fun listMovieDataBase():List<Movie>{
-        return appDataBase.getListMovie()
+    private fun listMovieDataBase(page :Int):List<Movie>{
+        return appDataBase.getListMovie(page)
     }
 
     fun validateLogin() = appRepositoryPreference.getLogin()

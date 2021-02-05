@@ -6,8 +6,8 @@ import pe.meria.repository.local.database.entity.MovieEntity
 @Dao
 interface MovieDao {
 
-    @Query("select * from MovieEntity")
-    fun listMovie(): List<MovieEntity>
+    @Query("select * from MovieEntity LIMIT :pageSize OFFSET :pageIndex")
+    fun listMovie(pageSize : Int,pageIndex: Int): List<MovieEntity>
 
     @Insert
     fun insertListMovie(plato : ArrayList<MovieEntity>) : Array<Long>

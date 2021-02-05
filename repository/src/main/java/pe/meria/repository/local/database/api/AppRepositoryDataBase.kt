@@ -1,5 +1,6 @@
 package pe.meria.repository.local.database.api
 
+import android.util.Log
 import pe.meria.entity.Movie
 import pe.meria.repository.local.database.dao.MovieDao
 import pe.meria.repository.local.database.entity.MovieEntity
@@ -9,12 +10,26 @@ import pe.meria.usecases.repository.database.AppDataBase
 
 class AppRepositoryDataBase(private val movieDao: MovieDao) : AppDataBase {
 
-    override fun getListMovie(): List<Movie> {
-        val list =  MovieEntity.toListMovies(movieDao.listMovie())
-        if (list.isNotEmpty()){
-            return list
+    override fun getListMovie(page :Int): List<Movie> {
+        var pagination = page-1
+        Log.d("paginationOne","$pagination")
+        if (pagination >0){
+            pagination =pagination* 20
+            Log.d("paginationTwo","$pagination")
+        }
+
+        Log.d("paginationThree","$pagination")
+
+        val list =  MovieEntity.toListMovies(movieDao.listMovie(20,pagination))
+        return if (list.isNotEmpty()){
+            list
         }else{
-            throw NetworkExceptionConnection(10,errorConnection,errorConnection)
+            if (page ==1){
+                throw NetworkExceptionConnection(10,errorConnection,errorConnection)
+            }else{
+                list
+            }
+
         }
     }
 

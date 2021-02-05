@@ -86,7 +86,7 @@ class HomeActivity : BaseActivity() {
 
     override fun observeViewModel() {
         homeViewModel.movieListLiveData.observe(this, Observer {
-            it.apply { if (this.isNotEmpty()){ updateListAdapter(this) } }
+            it.apply {updateListAdapter(this)}
         })
 
         homeViewModel.errorLiveData.observe(this, Observer {
@@ -105,6 +105,7 @@ class HomeActivity : BaseActivity() {
             }
         }else{
             pageNext = false
+
             Log.d("pageNext","$pageNext")
         }
     }

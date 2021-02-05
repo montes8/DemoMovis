@@ -6,7 +6,7 @@ import java.lang.Exception
 interface AppDataBase {
 
     @Throws(Exception::class)
-    fun getListMovie(): List<Movie>
+    fun getListMovie(page :Int): List<Movie>
 
     @Throws(Exception::class)
     fun saveListMovie(list : ArrayList<Movie>)
