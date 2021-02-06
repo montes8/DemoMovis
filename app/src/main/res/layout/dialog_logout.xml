@@ -104,7 +104,7 @@
             android:text="@string/txt_cancel_btn"
             android:textAllCaps="false"
             android:visibility="visible"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_size_twelve"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnAcceptDialog"
