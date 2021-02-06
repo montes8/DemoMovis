@@ -13,6 +13,11 @@
     <color name="white">#FFFFFFFF</color>
 
 
+
     <color name="gray_300">#E0E0E0</color>
+    <color name="gray_350">#CECECE</color>
     <color name="gray_400">#4A4A4A</color>
+
+
+    <color name="red_200">#F25454</color>
 </resources>

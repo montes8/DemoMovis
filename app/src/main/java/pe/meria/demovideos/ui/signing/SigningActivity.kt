@@ -6,12 +6,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import pe.meria.demovideos.R
+import pe.meria.demovideos.component.editNormal.CustomEditText
 import pe.meria.demovideos.databinding.ActivitySigningBinding
 import pe.meria.demovideos.extensions.animForm
+import pe.meria.demovideos.extensions.imageAnimation
 import pe.meria.demovideos.ui.BaseActivity
 import pe.meria.demovideos.ui.home.HomeActivity
 
-class SigningActivity : BaseActivity() {
+class SigningActivity : BaseActivity(), CustomEditText.ITCSimpleEditText {
 
     private val signingViewModel                : SigningViewModel by viewModel(clazz = SigningViewModel::class)
     private lateinit var activitySigningBinding : ActivitySigningBinding
@@ -34,6 +36,7 @@ class SigningActivity : BaseActivity() {
 
     private fun firstAnimations() {
         this.activitySigningBinding.profileImage.startAnimation(animForm)
+        this.activitySigningBinding.profileImage.imageAnimation
         this.activitySigningBinding.linearLayout3.startAnimation(animForm)
         this.activitySigningBinding.edNameUser.startAnimation(animForm)
         this.activitySigningBinding.edPassUser.startAnimation(animForm)
@@ -46,6 +49,15 @@ class SigningActivity : BaseActivity() {
         activitySigningBinding.let {
             it.signingViewModel = signingViewModel
             it.lifecycleOwner = this }
+
+        this.activitySigningBinding.edNameUser.etListener = this
+        this.activitySigningBinding.edPassUser.etListener = this
+        signingViewModel.setEditUse(this.activitySigningBinding.edNameUser, this.activitySigningBinding.edPassUser)
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        this.activitySigningBinding.linearLayout3.startAnimation(animForm)
     }
 
     override fun getViewModel() = signingViewModel
@@ -56,8 +68,22 @@ class SigningActivity : BaseActivity() {
                 if (this){
                     overridePendingTransition(R.anim.left_in, R.anim.left_out)
                     HomeActivity.newInstance(this@SigningActivity)
+                    finish()
                 }else{ toastGeneric(getString(R.string.error_login)) }
             }
         })
+    }
+
+    override fun onchangeListener(editText: CustomEditText) {
+        editText.hideError
+    }
+
+
+    override fun doWhenFocusGone(editText: CustomEditText) {
+
+    }
+
+    override fun doOnFocus(editText: CustomEditText) {
+
     }
 }

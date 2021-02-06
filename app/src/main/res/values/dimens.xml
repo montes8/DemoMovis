@@ -18,6 +18,7 @@
     <dimen name="size_thirty_five">35dp</dimen>
     <dimen name="size_forty">40dp</dimen>
     <dimen name="size_fifty">50dp</dimen>
+    <dimen name="size_fifty_six">56dp</dimen>
     <dimen name="size_sixty_five">65dp</dimen>
     <dimen name="size_eighty">80dp</dimen>
     <dimen name="size_one_hundred">100dp</dimen>

@@ -4,14 +4,18 @@ import androidx.room.*
 import pe.meria.repository.local.database.entity.MovieEntity
 
 @Dao
-interface MovieDao {
+abstract class MovieDao :BaseDAO<MovieEntity>(){
 
     @Query("select * from MovieEntity LIMIT :pageSize OFFSET :pageIndex")
-    fun listMovie(pageSize : Int,pageIndex: Int): List<MovieEntity>
-
-    @Insert
-    fun insertListMovie(plato : ArrayList<MovieEntity>) : Array<Long>
+    abstract fun listMovie(pageSize : Int,pageIndex: Int): List<MovieEntity>
 
     @Query("DELETE FROM MovieEntity")
-    fun cleanTable(): Int
+    abstract fun deleteTable(): Int
+
+
+    @Transaction
+    open fun  insertListMovie(model : ArrayList<MovieEntity>) : Array<Long>{
+        return insertList(model)
+    }
+
 }

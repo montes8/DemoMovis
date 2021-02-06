@@ -9,7 +9,6 @@ import pe.meria.repository.repository.exception.UnAuthorizeException
 import java.lang.Exception
 
 fun getDensity(context: Context): Float {
-
     return context.resources.displayMetrics.density
 }
 

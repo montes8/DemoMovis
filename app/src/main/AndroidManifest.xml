@@ -23,10 +23,19 @@
         tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity"
         android:theme="@style/AppThemeBlue"
         tools:targetApi="n">
-        <activity android:name=".ui.signing.SigningActivity"/>
-        <activity android:name=".ui.detail.DetailActivity" />
-        <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.splash.SplashActivity">
+        <activity android:name=".ui.signing.SigningActivity"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.detail.DetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.home.HomeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.splash.SplashActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

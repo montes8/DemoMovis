@@ -31,7 +31,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,43 +44,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profileImage">
 
-                <androidx.appcompat.widget.AppCompatEditText
+                <pe.meria.demovideos.component.editNormal.TCEditNormalText
                     android:id="@+id/edNameUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/size_thirty_three"
+                    android:layout_width="@dimen/general"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/size_fifteen"
-                    android:background="@color/white"
-                    android:drawableStart="@drawable/ic_login"
-                    android:drawablePadding="@dimen/size_fifteen"
-                    android:ems="13"
-                    android:hint="@string/text_hint_user"
-                    android:inputType="textEmailAddress"
-                    android:paddingStart="@dimen/size_five"
-                    android:paddingEnd="@dimen/general"
-                    android:text="@={signingViewModel.userName}"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_fourteen"
-                    android:textStyle="normal" />
+                    app:hint="@string/text_hint_user"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
 
-                <androidx.appcompat.widget.AppCompatEditText
+
+                <pe.meria.demovideos.component.editPasword.TCEditPasswordText
                     android:id="@+id/edPassUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/size_thirty_three"
+                    android:layout_width="@dimen/general"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/size_fifteen"
-                    android:background="@color/white"
-                    android:drawableStart="@drawable/ic_pass"
-                    android:drawablePadding="@dimen/size_fifteen"
-                    android:ems="13"
-                    android:hint="@string/text_hint_pass"
-                    android:inputType="textPassword"
+                    app:hint="@string/text_hint_pass"
                     android:paddingStart="@dimen/size_five"
                     android:paddingEnd="@dimen/general"
-                    android:text="@={signingViewModel.password}"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="normal" />
+                    app:layout_constraintTop_toBottomOf="@+id/edNameUser"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
                     android:id="@+id/btnEnter"
@@ -91,12 +79,15 @@
                     android:background="@drawable/bg_round_blue"
                     android:ems="13"
                     android:textStyle="bold"
-                    android:onClick="@{()->signingViewModel.clickLogin()}"
+                    android:onClick="@{()->signingViewModel.login()}"
                     android:text="@string/btn_enter"
+                    app:layout_constraintTop_toBottomOf="@+id/edPassUser"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     android:textAllCaps="false"
                     android:textColor="@color/white" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

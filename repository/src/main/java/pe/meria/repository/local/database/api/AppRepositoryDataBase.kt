@@ -35,6 +35,6 @@ class AppRepositoryDataBase(private val movieDao: MovieDao) : AppDataBase {
     }
 
     override fun deleteTable() {
-        movieDao.cleanTable()
+        movieDao.deleteTable()
     }
 }

@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
+import pe.meria.demovideos.component.editNormal.CustomEditTextStyle
 
 
 fun ConstraintLayout.outOfScreenAnimation(activity: AppCompatActivity) {
@@ -215,6 +216,29 @@ fun View.tooltipDisappearAnim(button: AppCompatImageButton) {
     })
 }
 
+val View.imageAnimation: Unit
+    get() {
+        val set = AnimationSet(true)
+        val animation = ScaleAnimation(
+            0.7f,
+            1f,
+            0.7f,
+            1f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
+        )
+        set.addAnimation(animation)
+
+        val animAlpha: Animation = AlphaAnimation(0.0f, 1.0f)
+        set.addAnimation(animAlpha)
+
+        set.duration = 2000
+        set.interpolator = OvershootInterpolator(1.3f)
+        this.startAnimation(set)
+    }
+
 fun View.tooltipAnim(button: AppCompatImageButton){
     this.visible
     val set = AnimationSet(true)
@@ -237,3 +261,44 @@ fun View.tooltipAnim(button: AppCompatImageButton){
         }
     })
 }
+
+fun AppCompatTextView.appearWithAnim(editText: CustomEditTextStyle){
+    this.visible
+
+    val set = AnimationSet(true)
+    val translateAnim = TranslateAnimation(0f, 0f, -this.height.toFloat(), 0f)
+    set.addAnimation(translateAnim)
+    val alphaAnim = AlphaAnimation(0f, 1f)
+    set.addAnimation(alphaAnim)
+    set.startOffset = 300
+    set.duration = 300
+
+    this.startAnimation(set)
+
+    set.setAnimationListener(object : Animation.AnimationListener {
+        override fun onAnimationStart(animation: Animation?) {
+            editText.drawableBackground = editText.errorDrawableBackground
+        }
+
+        override fun onAnimationEnd(animation: Animation?) {
+        }
+
+        override fun onAnimationRepeat(animation: Animation?) {}
+    })
+}
+
+val AppCompatTextView.disappearWithAnim: Unit
+    get() {
+        val set = AnimationSet(true)
+        val translateAnim = TranslateAnimation(0f, 0f, 0f, -this.height.toFloat())
+        set.addAnimation(translateAnim)
+        val alphaAnim = AlphaAnimation(1f, 0f)
+        set.addAnimation(alphaAnim)
+        set.startOffset = 300
+        set.duration = 300
+
+        this.invisible
+
+        this.startAnimation(set)
+
+    }
