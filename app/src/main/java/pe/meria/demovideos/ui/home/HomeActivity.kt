@@ -140,6 +140,10 @@ class HomeActivity : BaseActivity(),AdapterMovie.ListenerAdapter {
         }
     }
 
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
+
     override fun onclickItem(model: Movie, view: View) {
         model.let {
             val activityOptions =

@@ -10,8 +10,6 @@ abstract class BaseDAO<T> {
     @Insert
     abstract fun insertList(model : ArrayList<MovieEntity>) : Array<Long>
 
-
-
     @Delete
     protected abstract fun delete(model: T)
 

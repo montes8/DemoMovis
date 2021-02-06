@@ -26,6 +26,6 @@ class CustomVerticalSquareFrameLayout @JvmOverloads constructor(
             Math.min(widthSize, heightSize)
         }
         val newMeasureSpec = MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY)
-        super.onMeasure(newMeasureSpec-10, newMeasureSpec)
+        super.onMeasure(newMeasureSpec-50, newMeasureSpec)
     }
 }

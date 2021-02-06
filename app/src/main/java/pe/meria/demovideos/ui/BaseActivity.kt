@@ -39,11 +39,6 @@ abstract class BaseActivity : AppCompatActivity(){
 
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        overridePendingTransition(R.anim.rigth_in, R.anim.right_out)
-    }
-
     private fun observeMainViewModel() {
         this.observeViewModel()
         getViewModel()?.let { viewModel ->
