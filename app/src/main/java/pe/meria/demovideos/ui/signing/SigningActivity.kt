@@ -2,6 +2,8 @@ package pe.meria.demovideos.ui.signing
 
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -10,14 +12,22 @@ import pe.meria.demovideos.component.editNormal.CustomEditText
 import pe.meria.demovideos.databinding.ActivitySigningBinding
 import pe.meria.demovideos.extensions.animForm
 import pe.meria.demovideos.extensions.imageAnimation
+import pe.meria.demovideos.model.ImageLogoModel
 import pe.meria.demovideos.ui.BaseActivity
 import pe.meria.demovideos.ui.home.HomeActivity
+import pe.meria.demovideos.ui.signing.adapter.LogosPageAdapter
+import pe.meria.demovideos.ui.signing.adapter.ViewPagerTransformer
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SigningActivity : BaseActivity(), CustomEditText.ITCSimpleEditText {
 
     private val signingViewModel                : SigningViewModel by viewModel(clazz = SigningViewModel::class)
     private lateinit var activitySigningBinding : ActivitySigningBinding
 
+    var mAdapter: LogosPageAdapter? = null
+    var swipeTimer: Timer? = null
+    private var currentPage = 0
 
     companion object {
         fun newInstance(context: Context){
@@ -31,12 +41,46 @@ class SigningActivity : BaseActivity(), CustomEditText.ITCSimpleEditText {
 
     override fun setUpView() {
         bindLayout()
+        initViewPager()
         firstAnimations()
+
+    }
+
+    private fun initViewPager(){
+        mAdapter = LogosPageAdapter(supportFragmentManager,testList())
+        activitySigningBinding.viewPager.adapter = mAdapter
+        activitySigningBinding.viewPager.setPageTransformer(true,
+            ViewPagerTransformer(ViewPagerTransformer.TransformType.ZOOM)
+        )
+
+        swipe()
+    }
+
+    private fun swipe() {
+        val handler = Handler(Looper.getMainLooper())
+        val Update = Runnable {
+            if (currentPage == LogosPageAdapter.MAX_PAGE) {
+                currentPage = 0
+            }
+            activitySigningBinding.viewPager.setCurrentItem(currentPage++, true)
+        }
+        swipeTimer = Timer()
+        swipeTimer?.schedule(object : TimerTask() {
+            override fun run() {
+                handler.post(Update)
+            }
+        }, 500, 3000)
+    }
+
+    private fun testList():ArrayList<ImageLogoModel>{
+        val list : ArrayList<ImageLogoModel> = ArrayList()
+        list.add(ImageLogoModel(1,"logo_movie"))
+        list.add(ImageLogoModel(2,"ic_tv_movi"))
+        return list
     }
 
     private fun firstAnimations() {
-        this.activitySigningBinding.profileImage.startAnimation(animForm)
-        this.activitySigningBinding.profileImage.imageAnimation
+        this.activitySigningBinding.viewPager.imageAnimation
         this.activitySigningBinding.linearLayout3.startAnimation(animForm)
         this.activitySigningBinding.edNameUser.startAnimation(animForm)
         this.activitySigningBinding.edPassUser.startAnimation(animForm)

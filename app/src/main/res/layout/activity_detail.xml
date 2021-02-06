@@ -30,16 +30,36 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/size_twenty">
 
-                <ImageView
-                    android:id="@+id/imgBannerFood"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_two_hundred_thirty_four"
-                    android:background="@color/gray_300"
-                    android:contentDescription="@null"
-                    android:scaleType="centerCrop"
+                <pe.meria.demovideos.component.widget.CustomSquareFrameLayout
+                    android:id="@+id/contentImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imgBannerFood"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray_300"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/txtErrorConnexionDetail"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:lines="2"
+                        android:visibility="gone"
+                        android:textSize="@dimen/text_size_nineteen"
+                        android:layout_gravity="center"
+                        android:text="@string/error_message_connection"
+                        android:layout_height="wrap_content"/>
+
+                </pe.meria.demovideos.component.widget.CustomSquareFrameLayout>
+
 
                 <TextView
                     android:id="@+id/txtTitleDetail"
@@ -54,7 +74,7 @@
                     android:textSize="@dimen/text_size_nineteen"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imgBannerFood" />
+                    app:layout_constraintTop_toBottomOf="@+id/contentImage" />
 
 
                 <TextView
@@ -152,10 +172,10 @@
                     style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@+id/imgBannerFood"
+                    app:layout_constraintBottom_toBottomOf="@+id/contentImage"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imgBannerFood" />
+                    app:layout_constraintTop_toTopOf="@+id/contentImage" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>

@@ -19,8 +19,6 @@ open class CustomEditText(context: Context, private val attributeSet: AttributeS
             editTextNormalStyle()
         }
 
-    val setEditText: AppCompatEditText
-        get() = this.editText
 
     var textInput: String
         get() {
@@ -54,20 +52,15 @@ open class CustomEditText(context: Context, private val attributeSet: AttributeS
         attrSet.recycle()
     }
 
-    fun doWhenEditFinish(action: () -> Unit) {
-        this.editText.doAfterTextChanged {
-            editTextNormalStyle()
-            action()
-        }
-    }
 
-    fun doWhenTextChanged() {
+
+     private fun doWhenTextChanged() {
         this.editText.doOnTextChanged { text, _, _, _ ->
             this.etListener?.onchangeListener(this)
         }
     }
 
-    fun focusEvent(action: ((hasFocus: Boolean) -> Unit)?) {
+    private fun focusEvent(action: ((hasFocus: Boolean) -> Unit)?) {
         this.editText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus && this.editTextEnabled)this.etListener?.doWhenFocusGone(this)
             if (hasFocus) this.etListener?.doOnFocus(this)

@@ -4,8 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
+import androidx.core.util.Pair
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +27,7 @@ import pe.meria.demovideos.ui.home.adapter.AdapterMovie
 import pe.meria.demovideos.ui.signing.SigningActivity
 import pe.meria.entity.Movie
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : BaseActivity(),AdapterMovie.ListenerAdapter {
 
     private val homeViewModel                : HomeViewModel by viewModel(clazz = HomeViewModel::class)
     private lateinit var activityHomeBinding : ActivityHomeBinding
@@ -57,7 +61,7 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun initList(){
-        adapterMovie = AdapterMovie()
+        adapterMovie = AdapterMovie(this)
         val linearLayoutManager = LinearLayoutManager(this)
         activityHomeBinding.rvMovie.layoutManager = linearLayoutManager
         activityHomeBinding.rvMovie.adapter = adapterMovie
@@ -100,12 +104,6 @@ class HomeActivity : BaseActivity() {
         if (list.isNotEmpty()){
             page++
             adapterMovie?.addList(list as ArrayList<Movie>)
-            adapterMovie?.onClickItem={
-                it.apply {
-                    overridePendingTransition(R.anim.left_in, R.anim.left_out)
-                    DetailActivity.newInstance(this@HomeActivity,it)
-                }
-            }
         }else{
             pageNext = false
 
@@ -139,6 +137,25 @@ class HomeActivity : BaseActivity() {
             this.contentLogout.setOnClickListener { this.dismiss() }
             this.imgCloseLogout.setOnClickListener { this.dismiss() }
             this.btnCancelDialog.setOnClickListener { this.dismiss() }
+        }
+    }
+
+    override fun onclickItem(model: Movie, view: View) {
+        model.let {
+            val activityOptions =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this@HomeActivity,
+                    Pair(
+                        view.findViewById(R.id.roundImageView),
+                        DetailActivity.VIEW_NAME_HEADER_IMAGE
+                    ),
+                    Pair(
+                        view.findViewById(R.id.txtTitleItem),
+                        DetailActivity.VIEW_NAME_HEADER_TITLE
+                    )
+                )
+
+            ActivityCompat.startActivity(this@HomeActivity,  DetailActivity.newInstance(this@HomeActivity,it), activityOptions.toBundle())
         }
     }
 }

@@ -1,4 +1,4 @@
-package pe.meria.demovideos.component
+package pe.meria.demovideos.component.widget
 
 import android.app.AlertDialog
 import android.content.Context

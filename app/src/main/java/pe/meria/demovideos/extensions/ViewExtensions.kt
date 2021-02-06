@@ -33,10 +33,10 @@ val View.visible: Unit get() { this.visibility = View.VISIBLE }
 
 val View.invisible: Unit get() { this.visibility = View.INVISIBLE }
 
-fun ImageView.loadImageUrlPicasso(imageUrl : String,view :View){
+fun ImageView.loadImageUrlPicasso(imageUrl : String,view :View,error : View){
     if (imageUrl.isNotEmpty()) {
         if (AppUtils.isConnected(view.context)){
-            Picasso.with(view.context).load(imageUrl).into(this,object : Callback {
+            Picasso.with(view.context).load(imageUrl).noFade().into(this,object : Callback {
                 override fun onSuccess() { view.gone }
 
                 override fun onError() { view.gone }
@@ -44,6 +44,7 @@ fun ImageView.loadImageUrlPicasso(imageUrl : String,view :View){
         }else{
             view.setBackgroundColor(ContextCompat.getColor(view.context, R.color.purple_100))
             view.gone
+            error.visible
         }
     }
 }
@@ -122,6 +123,14 @@ fun AppCompatEditText.assignDrawableClicks(
         }
     }
     return false
+}
+
+@SuppressLint("UseCompatLoadingForDrawables")
+fun ImageView.setDrawableStartPosition(value : String){
+    val drawable = this.context.resources.getDrawable(this.context.resources.getIdentifier(value, "drawable", this.context.packageName),null)
+   drawable?.let {
+       this.setImageDrawable(it)
+   }?:this.setBackgroundColor(ContextCompat.getColor(this.context,R.color.gray_300))
 }
 
 

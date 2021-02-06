@@ -1,4 +1,4 @@
-package pe.meria.demovideos.component
+package pe.meria.demovideos.component.widget
 
 import android.annotation.SuppressLint
 import android.content.Context

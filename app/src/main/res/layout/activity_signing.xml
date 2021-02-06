@@ -20,14 +20,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/profileImage"
+            <pe.meria.demovideos.component.widget.CustomViewPager
+                android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_one_hundred"
-                android:contentDescription="@null"
-                android:src="@drawable/logo_movie"
+                android:layout_height="@dimen/size_one_hundred_twenty"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,7 +39,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profileImage">
+                app:layout_constraintTop_toBottomOf="@+id/viewPager">
 
                 <pe.meria.demovideos.component.editNormal.TCEditNormalText
                     android:id="@+id/edNameUser"

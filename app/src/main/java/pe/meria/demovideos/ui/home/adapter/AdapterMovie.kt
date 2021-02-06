@@ -1,6 +1,7 @@
 package pe.meria.demovideos.ui.home.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -13,7 +14,7 @@ import pe.meria.demovideos.extensions.loadImageUrlPicasso
 import pe.meria.entity.LoadingStatus
 import pe.meria.entity.Movie
 
-class AdapterMovie(var onClickItem: ((Movie) -> Unit)? = null) :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterMovie(var listener : ListenerAdapter) :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var isLoading = false
     private var flag = true
@@ -77,10 +78,10 @@ class AdapterMovie(var onClickItem: ((Movie) -> Unit)? = null) :RecyclerView.Ada
             if (list.isEmpty())
                 return
             (holder as MovieViewHolder).bind(list[position])
-            holder.itemView.roundImageView.loadImageUrlPicasso(list[position].posterPath,holder.itemView.progressBarItem)
+            holder.itemView.roundImageView.loadImageUrlPicasso(list[position].posterPath,holder.itemView.progressBarItem,holder.itemView.txtErrorConnexion)
             holder.itemView.setOnClickListener{
                 holder.itemView.delayClickState()
-                onClickItem?.invoke(list[position])
+                listener.onclickItem(list[position],holder.itemView)
             }
         } else {
             (holder as TypeTwoHolder).showLoading(isLoading)
@@ -99,5 +100,9 @@ class AdapterMovie(var onClickItem: ((Movie) -> Unit)? = null) :RecyclerView.Ada
             dataBinding.setVariable(BR.visible, isShow)
             dataBinding.executePendingBindings()
         }
+    }
+
+    interface ListenerAdapter{
+        fun onclickItem(model : Movie,view : View)
     }
 }

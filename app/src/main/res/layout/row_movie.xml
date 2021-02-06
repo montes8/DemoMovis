@@ -28,19 +28,35 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxHeight="@dimen/size_two_hundred_twenty">
+                android:layout_height="wrap_content">
 
-                <pe.meria.demovideos.component.RoundImageView
-                    android:id="@+id/roundImageView"
-                    android:layout_width="@dimen/size_one_hundred_twenty"
-                    android:layout_height="@dimen/general"
-                    android:scaleType="centerCrop"
-                    android:background="@color/purple_100"
+                <pe.meria.demovideos.component.widget.CustomVerticalSquareFrameLayout
+                    android:layout_width="wrap_content"
+                    android:id="@+id/ContentImageView"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_height="@dimen/general">
+                    <pe.meria.demovideos.component.widget.RoundImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/roundImageView"
+                        android:scaleType="centerCrop"
+                        android:background="@color/purple_100" />
+                    <TextView
+                        android:id="@+id/txtErrorConnexion"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:lines="2"
+                        android:visibility="gone"
+                        android:textSize="@dimen/text_size_twelve"
+                        android:layout_gravity="center"
+                        android:text="@string/error_message_connection"
+                        android:layout_height="wrap_content"/>
+
+                </pe.meria.demovideos.component.widget.CustomVerticalSquareFrameLayout>
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout2"
@@ -51,7 +67,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="3"
-                    app:layout_constraintStart_toEndOf="@+id/roundImageView"
+                    app:layout_constraintStart_toEndOf="@+id/ContentImageView"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints">
 
@@ -119,9 +135,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/roundImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/ContentImageView"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/roundImageView" />
+                    app:layout_constraintTop_toTopOf="@+id/ContentImageView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

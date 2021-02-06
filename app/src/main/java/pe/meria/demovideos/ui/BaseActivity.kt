@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.lifecycle.Observer
 import pe.meria.demovideos.R
-import pe.meria.demovideos.component.DemoMovieProgressBar
+import pe.meria.demovideos.component.widget.DemoMovieProgressBar
 import pe.meria.demovideos.ui.splash.SplashActivity
 import pe.meria.demovideos.utils.AppUtils.dialogGeneric
 import pe.meria.repository.repository.exception.GenericException
@@ -30,7 +30,10 @@ abstract class BaseActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         this.instanceState = savedInstanceState
         setContentView(getLayout())
-        mProgressBar = DemoMovieProgressBar(this, android.R.style.Theme_DeviceDefault_NoActionBar_Fullscreen)
+        mProgressBar = DemoMovieProgressBar(
+            this,
+            android.R.style.Theme_DeviceDefault_NoActionBar_Fullscreen
+        )
         this.setUpView()
         this.observeMainViewModel()
 
@@ -49,7 +52,7 @@ abstract class BaseActivity : AppCompatActivity(){
         }
     }
 
-      private fun showMessageException(ex: Exception) {
+       fun showMessageException(ex: Exception) {
          when(ex) {
              is UnAuthorizeException -> errorExpireSession(ex.message)
              is GenericException -> errorGeneric(ex.message)
@@ -60,7 +63,7 @@ abstract class BaseActivity : AppCompatActivity(){
          }
     }
 
-      private fun showLoading(isLoading: Boolean) {
+       fun showLoading(isLoading: Boolean) {
         mProgressBar.apply {
             if (isLoading) this?.show() else this?.dismiss()
         }
